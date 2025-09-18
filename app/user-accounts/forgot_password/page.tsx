@@ -12,7 +12,7 @@ export default function page() {
         Enter the mobile number associated with your Bisame account
       </p>
 
-      <PhoneNumberInput />
+      <PhoneNumberInput onChange={()=>{}} />
       <Button className="w-full" size="lg" rightIcon={<ArrowRight />}>
         SEND CODE
       </Button>
