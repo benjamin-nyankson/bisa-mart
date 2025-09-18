@@ -26,7 +26,7 @@ export default function page() {
           </Link>
         </p>
         <p>
-          Don't have an account?{" "}
+          {`Don't have an account?`}
           <Link href="/user-accounts/signup" className="text-secondary">
             {" "}
             Sign Up
