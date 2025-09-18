@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { PhoneNumberInput } from "@/components/ui/PhoneNumberInput";
 import { ArrowRight } from "lucide-react";
