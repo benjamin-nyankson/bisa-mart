@@ -6,7 +6,7 @@ export default function SignInPage() {
     <div className="w-full">
       <AuthHeader text="Welcome Back!" />
       <p className="mt-2 font-semibold text-center">
-        Ready to contrinue your journey on
+        Ready to continue your journey on
         <span className="text-secondary"> Bisame</span>
       </p>
       <LoginForm />
