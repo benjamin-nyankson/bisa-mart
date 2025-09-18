@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
 
-export default function page() {
+export default function VerifyAccountPage() {
   const [otp, setOtp] = useState("");
-  const { loading, error, success, postData } = usePost();
+  const { loading, success, postData } = usePost();
   const router = useRouter();
 
   const handleVerify = async () => {
@@ -26,7 +26,7 @@ export default function page() {
   return (
     <div className="flex items-center justify-center flex-col gap-3">
       <h2 className="font-bold text-2xl">Verify your account</h2>
-      <p>We've sent a verification codeto your phone</p>
+      <p>{`We've sent a verification codeto your phone`}</p>
       <OTPInput
         value={otp}
         onChange={setOtp}
