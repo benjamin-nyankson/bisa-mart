@@ -7,46 +7,59 @@ import { BASE_URL } from "./constant";
 
 export default function Homepage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const token = localStorage.getItem("authToken");
+  const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
 
-  const getUser = async () => {
+  const getUser = async (authToken: string) => {
     setLoading(true);
     try {
       const response = await fetch(`${BASE_URL}/profile`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${authToken}`,
         },
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.data);
         setUser(data.data);
       }
     } catch {
-      console.log("there was an error");
+      console.log("There was an error fetching user profile");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const storedAuth = localStorage.getItem("isAuthenticated");
-    setIsAuthenticated(Boolean(storedAuth));
-    getUser();
+    // Only run client-side
+    if (typeof window !== "undefined") {
+      const storedAuth = localStorage.getItem("isAuthenticated");
+      const storedToken = localStorage.getItem("authToken");
+
+      setIsAuthenticated(Boolean(storedAuth));
+      setToken(storedToken);
+
+      if (storedAuth && storedToken) {
+        getUser(storedToken);
+      }
+    }
   }, []);
 
   const logout = () => {
     setIsAuthenticated(false);
+    setToken(null);
     localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("authToken");
   };
 
   return (
     <div className="flex items-center justify-center mt-10 flex-col gap-5">
       {isAuthenticated ? (
-        <>{!loading && <UserProfile user={user as User} logout={logout} />}</>
+        <>
+          {!loading && user && <UserProfile user={user} logout={logout} />}
+          {loading && <p className="text-gray-500">Loading profile...</p>}
+        </>
       ) : (
         <>
           <AuthHeader text="Welcome" />
