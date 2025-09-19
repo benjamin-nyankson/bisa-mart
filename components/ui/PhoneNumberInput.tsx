@@ -5,6 +5,7 @@ import PhoneInput, { getCountryCallingCode } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { cn } from "@/lib/utils";
 
+type phonSection = "countryShortName" | "countryName" | "countryCode";
 interface PhoneNumberInputProps {
   label?: string;
   placeholder?: string;
@@ -13,6 +14,7 @@ interface PhoneNumberInputProps {
   disabled?: boolean;
   error?: string;
   className?: string;
+  includedSections?: phonSection[];
 }
 
 interface CountryInfo {
@@ -29,6 +31,7 @@ export function PhoneNumberInput({
   disabled = false,
   error,
   className,
+  includedSections = ["countryShortName", "countryName", "countryCode"],
 }: PhoneNumberInputProps) {
   const [focused, setFocused] = useState(false);
   const [country, setCountry] = useState<CountryInfo | null>(null);
@@ -81,16 +84,30 @@ export function PhoneNumberInput({
         />
       </div>
 
-      <input type="hidden" name="phone" value={value || ""} />
+      <input type="hidden" name="phoneNumber" value={value || ""} />
       {country && (
         <>
-          <input
-            type="hidden"
-            name="countryShortName"
-            value={country.countryShortName}
-          />
-          <input type="hidden" name="countryCode" value={country.countryCode} />
-          <input type="hidden" name="countryName" value={country.countryName} />
+          {includedSections.includes("countryShortName") && (
+            <input
+              type="hidden"
+              name="countryShortName"
+              value={country.countryShortName}
+            />
+          )}
+          {includedSections.includes("countryCode") && (
+            <input
+              type="hidden"
+              name="countryCode"
+              value={country.countryCode}
+            />
+          )}
+          {includedSections.includes("countryName") && (
+            <input
+              type="hidden"
+              name="countryName"
+              value={country.countryName}
+            />
+          )}
         </>
       )}
 

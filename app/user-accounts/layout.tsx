@@ -7,7 +7,7 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const excludedPaths = ["forgot_password", "verify_account"];
+  const excludedPaths = ["forgot_password", "verify_account","reset_password"];
   const pathname = usePathname();
   const hideTabs = excludedPaths.some((path) => pathname.includes(path));
 

@@ -2,12 +2,14 @@
 
 import { BASE_URL } from "@/components/constant";
 import { useState } from "react";
+import { toast } from "sonner";
 
+type Methods = "POST" | "PATCH" | "PUT";
 interface UsePostReturn<T> {
   loading: boolean;
   error: string | null;
   success: T | null;
-  postData: (url: string, body: any) => Promise<void>;
+  postData: (url: string, body: any, method?: Methods) => Promise<void>;
   data: T | null;
 }
 
@@ -17,7 +19,7 @@ export function usePost<T = any>(): UsePostReturn<T> {
   const [success, setSuccess] = useState<T | null>(null);
   const [data, setData] = useState<T | null>(null);
 
-  const postData = async (endpoint: string, body: any) => {
+  const postData = async (endpoint: string, body: any, method = "POST") => {
     setLoading(true);
     setError(null);
     setSuccess(null);
@@ -31,7 +33,7 @@ export function usePost<T = any>(): UsePostReturn<T> {
     }
     try {
       const res = await fetch(url, {
-        method: "POST",
+        method,
         headers,
         body: JSON.stringify(body),
       });
@@ -40,7 +42,7 @@ export function usePost<T = any>(): UsePostReturn<T> {
       setData(data);
 
       if (!res.ok) {
-        setError(data.error || "Something went wrong");
+        toast.error(data.message || "Something went wrong");
       } else {
         setSuccess(data);
       }
