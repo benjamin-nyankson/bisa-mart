@@ -4,8 +4,8 @@ import { BASE_URL } from "@/components/constant";
 import { useState } from "react";
 import { toast } from "sonner";
 
-type Methods = "POST" | "PATCH" | "PUT";
-interface UsePostReturn<T> {
+type Methods = "POST" | "PATCH" | "PUT" | "GET";
+interface useFetchReturn<T> {
   loading: boolean;
   error: string | null;
   success: T | null;
@@ -13,7 +13,7 @@ interface UsePostReturn<T> {
   data: T | null;
 }
 
-export function usePost<T = any>(): UsePostReturn<T> {
+export function useFetch<T = any>(): useFetchReturn<T> {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<T | null>(null);

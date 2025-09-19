@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { usePost } from "@/hooks/usePost";
+import { useFetch } from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
 
 export default function VerifyAccountPage() {
   const [otp, setOtp] = useState("");
-  const { loading, success, postData } = usePost();
+  const { loading, success, postData } = useFetch();
   const router = useRouter();
 
   const handleVerify = async () => {
@@ -18,7 +18,6 @@ export default function VerifyAccountPage() {
 
   useEffect(() => {
     if (success) {
-      localStorage.removeItem("authToken");
       router.push("/user-accounts/signin");
     }
   }, [success, router]);

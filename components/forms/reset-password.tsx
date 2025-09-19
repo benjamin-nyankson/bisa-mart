@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { TextInput } from "../ui/text-input";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
-import { usePost } from "@/hooks/usePost";
+import { useFetch } from "@/hooks/useFetch";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export function ChangePassword() {
-  const { loading, error, success, postData } = usePost();
+  const { loading, error, success, postData } = useFetch();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,7 +20,6 @@ export function ChangePassword() {
 
   useEffect(() => {
     if (success) {
-      localStorage.removeItem("authToken");
       toast.success("Password changed successfully");
 
       setTimeout(() => {

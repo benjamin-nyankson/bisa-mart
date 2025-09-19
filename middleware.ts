@@ -3,14 +3,20 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
+  console.log("hellooo");
   const token = req.cookies.get("authToken")?.value;
   const { pathname } = req.nextUrl;
 
   // Define all auth pages
-  const authPaths = ["/login", "/signup", "/forgot_password", "/verify_account"];
+  const authPaths = [
+    "/login",
+    "/signup",
+    "/forgot_password",
+    "/verify_account",
+  ];
 
   // If logged in and trying to access auth pages, redirect to dashboard/home
-  if (token && authPaths.some(path => pathname.startsWith(path))) {
+  if (token && authPaths.some((path) => pathname.startsWith(path))) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 

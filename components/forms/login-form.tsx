@@ -6,15 +6,14 @@ import { PhoneNumberInput } from "../ui/PhoneNumberInput";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { usePost } from "@/hooks/usePost";
+import { useFetch } from "@/hooks/useFetch";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { cookies } from "next/headers";
 
 export function LoginForm() {
   const [phone, setPhone] = useState<string | undefined>("");
   const [password, setPassword] = useState("");
-  const { loading, error, success, postData } = usePost();
+  const { loading, error, success, postData, data } = useFetch();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,12 +25,18 @@ export function LoginForm() {
 
   useEffect(() => {
     if (success) {
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("authToken", data.data.token);
       toast.success("Login success");
-      localStorage.setItem("is_athenticated", "true");
-      cookieStore.set()
       setTimeout(() => {
         router.push("/");
       }, 3000);
+    }
+
+    const isAuthenticated = Boolean(localStorage.getItem("isAuthenticated"));
+
+    if (isAuthenticated) {
+      router.replace("/");
     }
   });
 

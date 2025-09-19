@@ -7,7 +7,7 @@ import { Select } from "../ui/Select";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { usePost } from "@/hooks/usePost";
+import { useFetch } from "@/hooks/useFetch";
 import { useRouter } from "next/navigation";
 
 export function SignupForm() {
@@ -17,7 +17,7 @@ export function SignupForm() {
     success,
     data: response,
     postData,
-  } = usePost();
+  } = useFetch();
   const [phoneNumber, setPhoneNumber] = useState<string | undefined>("");
   const router = useRouter();
 

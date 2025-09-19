@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { PhoneNumberInput } from "@/components/ui/PhoneNumberInput";
-import { usePost } from "@/hooks/usePost";
+import { useFetch } from "@/hooks/useFetch";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 export default function ForgotPassword() {
   const [phone, setPhone] = useState<string | undefined>("");
-  const { loading, error, success, postData, data: response } = usePost();
+  const { loading, error, success, postData, data: response } = useFetch();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
