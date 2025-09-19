@@ -1,13 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useFetch } from "@/hooks/useFetch";
+import { usePost } from "@/hooks/usePost";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
 
 export default function VerifyAccountPage() {
   const [otp, setOtp] = useState("");
-  const { loading, success, postData } = useFetch();
+  const { loading, success, postData } = usePost();
   const router = useRouter();
 
   const handleVerify = async () => {

@@ -6,14 +6,14 @@ import { PhoneNumberInput } from "../ui/PhoneNumberInput";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useFetch } from "@/hooks/useFetch";
+import { usePost } from "@/hooks/usePost";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export function LoginForm() {
   const [phone, setPhone] = useState<string | undefined>("");
   const [password, setPassword] = useState("");
-  const { loading, error, success, postData, data } = useFetch();
+  const { loading, error, success, postData, data } = usePost();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {

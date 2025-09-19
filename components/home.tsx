@@ -4,12 +4,24 @@ import { AuthHeader } from "./auth-header";
 import Link from "next/link";
 import { User, UserProfile } from "./UserProfile";
 import { BASE_URL } from "./constant";
+import LandingPage from "./landing-page";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import AuthenticatedLanding from "./authenticated-landing";
 
 export default function Homepage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    setToken(null);
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("authToken");
+  };
 
   const getUser = async (authToken: string) => {
     setLoading(true);
@@ -23,9 +35,12 @@ export default function Homepage() {
       if (response.ok) {
         const data = await response.json();
         setUser(data.data);
+      } else {
+        logout();
+        router.push("/user-accounts/signin");
       }
     } catch {
-      console.log("There was an error fetching user profile");
+      toast.error("There was an error fetching user profile");
     } finally {
       setLoading(false);
     }
@@ -46,30 +61,17 @@ export default function Homepage() {
     }
   }, []);
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    setToken(null);
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("authToken");
-  };
-
   return (
-    <div className="flex items-center justify-center mt-10 flex-col gap-5">
+    <div className="flex items-center justify-center flex-col gap-5">
       {isAuthenticated ? (
         <>
-          {!loading && user && <UserProfile user={user} logout={logout} />}
+          {!loading && user && (
+            <AuthenticatedLanding user={user} logout={logout} />
+          )}
           {loading && <p className="text-gray-500">Loading profile...</p>}
         </>
       ) : (
-        <>
-          <AuthHeader text="Welcome" />
-          <Link
-            href="/user-accounts/signin"
-            className="bg-[#f97316] p-3 rounded-lg text-xl text-white"
-          >
-            Get Started
-          </Link>
-        </>
+        <LandingPage />
       )}
     </div>
   );
