@@ -28,6 +28,8 @@ export function useFetch<T = any>(): useFetchReturn<T> {
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
+
+    alert("works")
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     }
