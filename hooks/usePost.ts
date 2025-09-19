@@ -42,7 +42,11 @@ export function usePost<T = any>(): UsePostReturn<T> {
       setData(data);
 
       if (!res.ok) {
-        toast.error(data.message || "Something went wrong");
+        toast.error(
+          typeof data.message === "object"
+            ? "Something went wrong"
+            : data.message
+        );
       } else {
         setSuccess(data);
       }

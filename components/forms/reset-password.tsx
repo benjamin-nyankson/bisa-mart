@@ -1,12 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { TextInput } from "../ui/text-input";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { usePost } from "@/hooks/usePost";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function ChangePassword() {
   const { loading, error, success, postData } = usePost();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,7 +17,18 @@ export function ChangePassword() {
     const body = Object.fromEntries(formData.entries());
     await postData("change-password", body, "PATCH");
   };
-  
+
+  useEffect(() => {
+    if (success) {
+      localStorage.removeItem("authToken");
+      toast.success("Password changed successfully");
+
+      setTimeout(() => {
+        router.push("/user-accounts/signin");
+      }, 300);
+    }
+  }, [success]);
+
   return (
     <form
       onSubmit={handleSubmit}

@@ -1,17 +1,21 @@
 "use client";
 import { TextInput } from "../ui/text-input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-phone-number-input/style.css";
 import { PhoneNumberInput } from "../ui/PhoneNumberInput";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePost } from "@/hooks/usePost";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
 
 export function LoginForm() {
   const [phone, setPhone] = useState<string | undefined>("");
   const [password, setPassword] = useState("");
   const { loading, error, success, postData } = usePost();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +23,17 @@ export function LoginForm() {
     const body = Object.fromEntries(formData.entries());
     await postData("login", body);
   };
+
+  useEffect(() => {
+    if (success) {
+      toast.success("Login success");
+      localStorage.setItem("is_athenticated", "true");
+      cookieStore.set()
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+    }
+  });
 
   return (
     <form
