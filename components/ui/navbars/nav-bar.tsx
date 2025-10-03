@@ -12,7 +12,7 @@ export function Navbar() {
   return (
     <div className="w-full h-20 bg-secondary border-t border-gray-200 flex items-center px-5 gap-2 justify-start lg:justify-between">
       <Link href="/">
-        <h2 className="text-primary text-2xl font-bold">{appName}</h2>
+        <h2 className="text-white text-2xl font-bold">{appName}</h2>
       </Link>
       <div className="flex items-center gap-3">
         <Dropdown
@@ -24,7 +24,7 @@ export function Navbar() {
           }
           className=" border border-secondary hover:bg-amber-50 bg-white"
         >
-          <div className="text-amber-300 ">hello</div>
+          <div className="text-primary ">hello</div>
         </Dropdown>
         <div className="block lg:hidden bg-white p-2 rounded-full cursor-pointer">
           <Search size={20} />
