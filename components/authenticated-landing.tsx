@@ -3,6 +3,7 @@ import React from "react";
 import { User } from "./UserProfile";
 import { ShoppingBag, Truck, Heart, Package, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { appName } from "@/constants/constant";
 
 interface AuthenticatedLandingProps {
   user: User;
@@ -28,7 +29,7 @@ export default function AuthenticatedLanding({
     <div className="w-full min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       {/* <header className="w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-4 flex items-center justify-between shadow">
-        <h1 className="text-2xl font-bold">BisaMe</h1>
+        <h1 className="text-2xl font-bold">{appName}</h1>
         <div className="flex items-center gap-4">
           <span className="font-medium">
             Hi, {user.firstName} {user.lastName}
@@ -49,7 +50,7 @@ export default function AuthenticatedLanding({
         </h2>
         <p className="text-gray-600 max-w-lg mx-auto mb-5">
           Discover new products, track your orders, and enjoy a seamless
-          shopping experience with BisaMe.
+          shopping experience with {appName}.
         </p>
 
         <Link
@@ -152,7 +153,7 @@ export default function AuthenticatedLanding({
 
       {/* Footer */}
       <footer className="bg-gray-100 text-gray-600 text-center py-4 text-sm">
-        © {new Date().getFullYear()} BisaMe. All rights reserved.
+        © {new Date().getFullYear()} {appName}. All rights reserved.
       </footer>
     </div>
   );

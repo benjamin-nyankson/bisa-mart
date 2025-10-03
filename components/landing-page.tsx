@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
 import { ShoppingBag, Truck, ShieldCheck } from "lucide-react";
+import { appName } from "@/constants/constant";
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col w-full">
       {/* Hero */}
       <section className="flex-1 bg-gradient-to-r from-primary to-secondary text-white flex flex-col items-center justify-center text-center px-6 py-20">
-        <h1 className="text-5xl font-extrabold mb-4">Welcome to BisaMe</h1>
+        <h1 className="text-5xl font-extrabold mb-4">Welcome to {appName}</h1>
         <p className="text-lg max-w-2xl mb-6">
           Your one-stop e-commerce platform. Shop smarter, pay securely, and
           enjoy fast delivery — all in one app.
@@ -23,7 +24,7 @@ export default function LandingPage() {
       {/* Features */}
       <section className="py-16 px-6 bg-gray-50 text-gray-800">
         <h2 className="text-3xl font-bold text-center mb-12">
-          Why Choose BisaMe?
+          Why Choose {appName}?
         </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
@@ -46,7 +47,9 @@ export default function LandingPage() {
 
       {/* Featured Products (dummy) */}
       <section className="py-16 px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Featured Products</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Featured Products
+        </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {["Sneakers", "Smartphone", "Headphones"].map((product, idx) => (
             <div
@@ -58,7 +61,7 @@ export default function LandingPage() {
               </div>
               <h3 className="text-lg font-semibold">{product}</h3>
               <p className="text-gray-600 mb-4">$ {(idx + 1) * 50}</p>
-              <button className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-[#0d0895]">
+              <button className="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary">
                 Buy Now
               </button>
             </div>
@@ -68,10 +71,12 @@ export default function LandingPage() {
 
       {/* Call to Action */}
       <section className="py-16 px-6 bg-secondary text-white text-center">
-        <h2 className="text-3xl font-bold mb-6">Ready to Shop with BisaMe?</h2>
+        <h2 className="text-3xl font-bold mb-6">
+          Ready to Shop with {appName}?
+        </h2>
         <Link
           href="/user-accounts/signup"
-          className="bg-primary px-6 py-3 rounded-xl text-lg font-semibold hover:scale-105 transition"
+          className="bg-primary px-6 py-3 rounded-xl hover:bg-primary-500 text-lg font-semibold hover:scale-105 transition"
         >
           Create an Account
         </Link>
@@ -79,7 +84,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="bg-gray-100 text-gray-600 text-center py-4 text-sm">
-        © {new Date().getFullYear()} BisaMe. All rights reserved.
+        © {new Date().getFullYear()} {appName}. All rights reserved.
       </footer>
     </div>
   );

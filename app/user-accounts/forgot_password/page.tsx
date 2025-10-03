@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { PhoneNumberInput } from "@/components/ui/PhoneNumberInput";
+import { appName } from "@/constants/constant";
 import { usePost } from "@/hooks/usePost";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -39,7 +40,7 @@ export default function ForgotPassword() {
     >
       <h2 className="font-bold text-2xl">Forgot Password</h2>
       <p className="text-center">
-        Enter the mobile number associated with your Bisame account
+        Enter the mobile number associated with your {appName} account
       </p>
       <PhoneNumberInput
         label="Phone Number"
