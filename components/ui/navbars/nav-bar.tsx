@@ -6,12 +6,13 @@ import { Button } from "../button";
 import { ChevronDown, Heart, MapPin, Search, UserRound } from "lucide-react";
 import { colors } from "@/lib/colors";
 import Link from "next/link";
+import { appName } from "@/constants/constant";
 
 export function Navbar() {
   return (
     <div className="w-full h-20 bg-secondary border-t border-gray-200 flex items-center px-5 gap-2 justify-start lg:justify-between">
       <Link href="/">
-        <Image src="/bisame.png" alt="bisame-icon" width={100} height={500} />
+        <h2 className="text-primary text-2xl font-bold">{appName}</h2>
       </Link>
       <div className="flex items-center gap-3">
         <Dropdown
@@ -39,8 +40,6 @@ export function Navbar() {
           <Button size="lg" className="px-5">
             SELL
           </Button>
-          <Heart color="white" />
-          <UserRound size={32} color={colors.secondary.DEFAULT} />
         </div>
       </div>
     </div>

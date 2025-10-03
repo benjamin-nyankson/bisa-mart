@@ -29,7 +29,7 @@ export function UserProfile({ user, logout }: UserProfileProps) {
   return (
     <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
       <div className="flex items-center gap-4">
-        <div className="w-20 h-20 rounded-full bg-[#1209be] flex items-center justify-center text-white text-2xl font-bold">
+        <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center text-white text-2xl font-bold">
           {user?.firstName?.[0]}
           {user?.lastName?.[0]}
         </div>
@@ -43,7 +43,7 @@ export function UserProfile({ user, logout }: UserProfileProps) {
           <span
             className={`inline-block mt-1 px-3 py-1 text-xs rounded-full ${
               user?.status === "Active"
-                ? "bg-[#f97316] text-white"
+                ? "bg-primary text-white"
                 : "bg-gray-400 text-white"
             }`}
           >
@@ -56,19 +56,19 @@ export function UserProfile({ user, logout }: UserProfileProps) {
       <div className="mt-6 space-y-4 text-sm">
         {/* Phone */}
         <div className="flex items-center gap-2 text-gray-700">
-          <Phone className="w-4 h-4 text-[#f97316]" />
+          <Phone className="w-4 h-4 text-primary" />
           <span>{user?.phoneNumber}</span>
         </div>
 
         {/* Email */}
         <div className="flex items-center gap-2 text-gray-700">
-          <Mail className="w-4 h-4 text-[#f97316]" />
+          <Mail className="w-4 h-4 text-primary" />
           <span>{user?.email || "No email provided"}</span>
         </div>
 
         {/* Country */}
         <div className="flex items-center gap-2 text-gray-700">
-          <Globe className="w-4 h-4 text-[#1209be]" />
+          <Globe className="w-4 h-4 text-secondary" />
           <span>
             {user?.countryName} ({user?.countryShortName})
           </span>
@@ -76,7 +76,7 @@ export function UserProfile({ user, logout }: UserProfileProps) {
 
         {/* Authenticated */}
         <div className="flex items-center gap-2 text-gray-700">
-          <User className="w-4 h-4 text-[#1209be]" />
+          <User className="w-4 h-4 text-secondary" />
           <span>
             {user?.authenticated ? "Authenticated" : "Not Authenticated"}
           </span>

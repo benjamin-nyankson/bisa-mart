@@ -3,13 +3,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  console.log("hellooo");
   const token = req.cookies.get("authToken")?.value;
   const { pathname } = req.nextUrl;
 
   // Define all auth pages
   const authPaths = [
-    "/login",
+    "/signin",
     "/signup",
     "/forgot_password",
     "/verify_account",

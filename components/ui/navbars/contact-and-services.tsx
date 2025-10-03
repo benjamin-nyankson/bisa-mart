@@ -51,7 +51,7 @@ export function ContactAndServices() {
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           <Phone size={iconSize} />
-          +233 59 467 3304
+          +233 55 214 1752
         </div>
         <div className="border rounded-md border-gray-200 w-fit p-2">
           <MessageCircleMore className="text-black" />

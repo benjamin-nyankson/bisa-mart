@@ -26,7 +26,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex cursor-pointer items-center justify-center font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#ce5210]",
+        "inline-flex cursor-pointer items-center justify-center font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-500",
 
         variant === "primary" && "bg-primary text-white  ",
         variant === "secondary" && "bg-gray-100 text-gray-800  ",

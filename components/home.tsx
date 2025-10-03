@@ -14,6 +14,7 @@ export default function Homepage() {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
   const router = useRouter();
 
   const logout = () => {
@@ -39,8 +40,9 @@ export default function Homepage() {
         logout();
         router.push("/user-accounts/signin");
       }
-    } catch {
+    } catch (err) {
       toast.error("There was an error fetching user profile");
+      setError(err as Error);
     } finally {
       setLoading(false);
     }
@@ -63,7 +65,7 @@ export default function Homepage() {
 
   return (
     <div className="flex items-center justify-center flex-col gap-5">
-      {isAuthenticated ? (
+      {isAuthenticated && !error ? (
         <>
           {!loading && user && (
             <AuthenticatedLanding user={user} logout={logout} />
