@@ -1,31 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bisa-Mart
+
+Bisa-Mart is a modern e-commerce web application built with Next.js and TypeScript. It features a complete user authentication system and a clean, responsive user interface.
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** Custom-built with React
+- **Icons:** [Lucide React](https://lucide.dev/guide/react) & [Heroicons](https://heroicons.com/)
+- **State Management:** React Hooks
+- **Linting:** [ESLint](https://eslint.org/)
+
+## Project Structure
+
+The project is organized into the following directories:
+
+-   `app/`: Contains the core application logic, including pages and layouts.
+    -   `app/profile/`: User profile page.
+    -   `app/user-accounts/`: Pages for user authentication (sign in, sign up, forgot password, etc.).
+-   `components/`: Reusable React components.
+    -   `components/forms/`: Form components for login, signup, etc.
+    -   `components/ui/`: Basic UI elements like buttons, inputs, etc.
+-   `constants/`: Global constants.
+-   `hooks/`: Custom React hooks.
+-   `lib/`: Utility functions and libraries.
+-   `public/`: Static assets like images and icons.
+
+## Features
+
+-   **User Authentication:**
+    -   Sign up with email and password.
+    -   Sign in and sign out.
+    -   Account verification.
+    -   Password reset functionality.
+-   **User Profile:** View and manage user profile information.
+-   **Responsive Design:** The application is designed to work on all screen sizes.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
